@@ -19,7 +19,7 @@ class CreativeCloudVersionCheck(AbstractVersionCheck):
                 p_tag = section_tag.find('p')
                 date = re.findall('Version.*released on (\d{1,2}/\d{1,2}/\d{4}).*', p_tag.text)
                 if len(date) > 0:
-                    last_update = datetime.strptime(date[0], '%d/%m/%Y')
+                    last_update = datetime.strptime(date[0], '%m/%d/%Y')
                     return last_update
         except:
             print(self.label + "error occured")
