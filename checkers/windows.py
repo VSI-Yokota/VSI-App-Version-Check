@@ -22,7 +22,7 @@ class WindowsVersionCheck(AbstractVersionCheck):
             driver.get(self.url)
             data = driver.find_element_by_class_name('ms-GroupedList-group')
             rec = data.find_element_by_class_name('ms-List-cell')
-            date_tag = rec.find_element_by_class_name('is-row-header')
+            date_tag = rec.find_element_by_class_name('ms-DetailsRow-cell')
             date = date_tag.text
             driver.close()
             last_update = datetime.strptime(date, '%Y年%m月%d日')

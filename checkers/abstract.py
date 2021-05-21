@@ -33,7 +33,9 @@ class AbstractVersionCheck(ABC):
             return
 
         last_update = self.get_update_date() 
-        if target_date <= last_update:
+        if last_update is None:
+            print(self.label + " last update couldn't retrieve from this site. please check on yourself." + "\turl :" + self.url)
+        elif target_date <= last_update:
             print(self.label + " may have been changed version. latest article date was " + last_update.strftime('%Y/%m/%d') + "\turl :" + self.url)
         else :
             print(self.label + "none. latest article date was " + last_update.strftime('%Y/%m/%d'))
