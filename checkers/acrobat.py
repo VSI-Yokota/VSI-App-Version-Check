@@ -14,7 +14,7 @@ class AcrobatVersionCheck(AbstractVersionCheck):
 
         try:
             dt_tag = self.soup.find('table').find_all('td')
-            chomp_date = dt_tag[4].text.replace( '\n' , '' )
+            chomp_date = dt_tag[0].text.replace( '\n' , '' )
             last_update = datetime.strptime(chomp_date, '%b %d, %Y')
             return last_update
         except:

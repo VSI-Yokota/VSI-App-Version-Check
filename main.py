@@ -44,7 +44,6 @@ checkers = (
     KusanagiVersionCheck("https://kusanagi.tokyo/archives/"),
     FirefoxVersionCheck("https://www.mozilla.org/en-US/firefox/releases/"),
     IOSVersionCheck("https://support.apple.com/en-us/HT201222"),
-    WindowsVersionCheck("https://portal.msrc.microsoft.com/ja-jp/security-guidance"),
     ChromeVersionCheck("https://chromereleases.googleblog.com/"),
     AcrobatVersionCheck("https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html"),
     CreativeCloudVersionCheck("https://helpx.adobe.com/creative-cloud/release-note/cc-release-notes.html"),
@@ -57,6 +56,7 @@ checkers = (
     WXL202VersionCheck("http://www.rtpro.yamaha.co.jp/RT/docs/relnote/ap/Rev.16.00/"),
     AtermWG2600HP3VersionCheck("https://www.aterm.jp/support/verup/wg2600hp3/fw.html"),
     CybozuVersionCheck("https://cs.cybozu.co.jp/office10/"),
+    WindowsVersionCheck("https://portal.msrc.microsoft.com/ja-jp/security-guidance"),
 )
 
 def get_target_date():
