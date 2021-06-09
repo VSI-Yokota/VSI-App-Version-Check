@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from checkers.jpcert import JPCertCheck
 from checkers.php import PHPVersionCheck
 from checkers.php_for_win import PHP4WindowsVersionCheck
 from checkers.apache import ApacheVersionCheck
@@ -57,6 +58,7 @@ checkers = (
     AtermWG2600HP3VersionCheck("https://www.aterm.jp/support/verup/wg2600hp3/fw.html"),
     CybozuVersionCheck("https://cs.cybozu.co.jp/office10/"),
     WindowsVersionCheck("https://portal.msrc.microsoft.com/ja-jp/security-guidance"),
+    JPCertCheck("https://www.jpcert.or.jp/at/{}.html".format(datetime.now().year)),
 )
 
 def get_target_date():
