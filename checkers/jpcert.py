@@ -14,7 +14,6 @@ class JPCertCheck(AbstractVersionCheck):
 
         try:
             dt_tag = self.soup.find('table').find_all('td')
-            print (dt_tag[0])
             chomp_date = dt_tag[0].text.replace( '\n' , '' )
             last_update = datetime.strptime(chomp_date, '%Y-%m-%d')
             return last_update

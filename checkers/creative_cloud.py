@@ -14,7 +14,7 @@ class CreativeCloudVersionCheck(AbstractVersionCheck):
     def get_update_date(self):
 
         try:
-            section_tags = self.soup.find_all(class_='text parbase section')
+            section_tags = self.soup.find_all(class_='text aem-GridColumn aem-GridColumn--default--12')
             for section_tag in section_tags:
                 p_tag = section_tag.find('p')
                 date = re.findall('Version.*released on (\d{1,2}/\d{1,2}/\d{4}).*', p_tag.text)
