@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from checkers.jpcert_weekly import JPCertWeeklyCheck
+from checkers.adobe_security import AdobeSecurityVersionCheck
 from checkers.jpcert import JPCertCheck
 from checkers.php import PHPVersionCheck
 from checkers.php_for_win import PHP4WindowsVersionCheck
@@ -48,6 +50,7 @@ checkers = (
     ChromeVersionCheck("https://chromereleases.googleblog.com/"),
     AcrobatVersionCheck("https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html"),
     CreativeCloudVersionCheck("https://helpx.adobe.com/creative-cloud/release-note/cc-release-notes.html"),
+    AdobeSecurityVersionCheck("https://helpx.adobe.com/security.html"),
     AndroidVersionCheck("https://source.android.com/security/bulletin?hl=ja"),
     AquosVersionCheck("https://k-tai.sharp.co.jp/support/other/shm08/update/index.html"),
     TeraStationVersionCheck("http://buffalo.jp/download/driver/hd/ts5000_fw-win.html"),
@@ -59,6 +62,7 @@ checkers = (
     CybozuVersionCheck("https://cs.cybozu.co.jp/office10/"),
     WindowsVersionCheck("https://portal.msrc.microsoft.com/ja-jp/security-guidance"),
     JPCertCheck("https://www.jpcert.or.jp/at/{}.html".format(datetime.now().year)),
+    JPCertWeeklyCheck("https://www.jpcert.or.jp/wr/{}.html".format(datetime.now().year)),
 )
 
 def get_target_date():
@@ -68,6 +72,8 @@ def get_target_date():
         with open(file, mode='r') as f:
             str_date = f.read()
         
+        str_date = str_date.replace("\n", "")
+
         with open(file, mode='w') as f:
             yesterday = datetime.today() - timedelta(days=1)
             f.write(yesterday.strftime('%Y-%m-%d'))

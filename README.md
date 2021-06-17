@@ -13,7 +13,7 @@ pip install requests
 pip install beautifulsoup4
 ```
 
-- windowsバージョンチェック用selenium
+- バージョンチェック用ツール
 ```
 pip install selenium
 ```
