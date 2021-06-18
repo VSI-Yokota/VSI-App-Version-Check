@@ -15,14 +15,18 @@ class PHP4WindowsVersionCheck(AbstractVersionCheck):
 
         try:
             main = self.soup.find(id='main-column')
-            text = main.find(class_='block').find(class_="innerbox").find("h4").text
-            date = re.findall('.*\((.*)\)$', text)
+            blocks = main.find_all(class_='block')
+            date = []
+
+            for block in blocks:
+                innerbox = block.find(class_="innerbox")
+                if innerbox:
+                    datetext = innerbox.find("h4").text
+                    date = re.findall('.*\((.*)\)$', datetext)
+                    break
 
             if len(date) > 0:
                 last_update = datetime.strptime(date[0], '%Y-%b-%d %H:%M:%S')
                 return last_update
         except:
             print(self.label + "error occured")
-
-        
-
