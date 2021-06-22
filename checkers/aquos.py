@@ -8,7 +8,7 @@ class AquosVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "AQUOS SH-M08\t"
+        self.label = "AQUOS SH-M08" + self.separator
         self.url = url
 
     def get_update_date(self):

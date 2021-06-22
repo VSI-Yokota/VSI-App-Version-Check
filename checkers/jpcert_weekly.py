@@ -7,7 +7,7 @@ class JPCertWeeklyCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "JPCert Weekly\t"
+        self.label = "JPCert Weekly" + self.separator
         self.url = url
 
     def get_update_date(self):

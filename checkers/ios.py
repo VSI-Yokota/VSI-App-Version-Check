@@ -7,7 +7,7 @@ class IOSVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "IOS\t"
+        self.label = "IOS" + self.separator
         self.url = url
 
     def get_update_date(self):

@@ -13,6 +13,7 @@ class AbstractVersionCheck(ABC):
     def __init__(self, url, delay=0):
         self.label = ''
         self.url = ''
+        self.separator = ','
         try:
             res = requests.get(url)
             res.encoding = res.apparent_encoding
@@ -33,9 +34,10 @@ class AbstractVersionCheck(ABC):
             return
 
         last_update = self.get_update_date() 
+
         if last_update is None or target_date is None:
-            print(self.label + " last update couldn't retrieve from this site. please check on yourself." + "\turl :" + self.url)
+            print(self.label , " last update couldn't retrieve from this site. please check on yourself." , self.separator , self.url)
         elif target_date <= last_update:
-            print(self.label + " may have been changed version. latest article date was " + last_update.strftime('%Y/%m/%d') + "\turl :" + self.url)
+            print(self.label , " may have been changed version. latest article date was", self.separator , last_update.strftime('%Y/%m/%d') , self.separator , self.url)
         else :
-            print(self.label + "none. latest article date was " + last_update.strftime('%Y/%m/%d'))
+            print(self.label , "none. latest article date was", self.separator , last_update.strftime('%Y/%m/%d'))

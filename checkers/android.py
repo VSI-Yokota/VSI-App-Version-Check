@@ -7,7 +7,7 @@ class AndroidVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Android\t"
+        self.label = "Android" + self.separator
         self.url = url
 
     def get_update_date(self):

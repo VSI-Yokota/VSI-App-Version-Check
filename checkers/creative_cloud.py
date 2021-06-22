@@ -8,7 +8,7 @@ class CreativeCloudVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Adobe Creative Cloud\t"
+        self.label = "Adobe Creative Cloud" + self.separator
         self.url = url
 
     def get_update_date(self):

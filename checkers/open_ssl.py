@@ -7,7 +7,7 @@ class OpenSSLVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Open SSL\t"
+        self.label = "Open SSL" + self.separator
         self.url = url
 
     def get_update_date(self):

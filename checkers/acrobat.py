@@ -7,7 +7,7 @@ class AcrobatVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Acrobat\t"
+        self.label = "Acrobat" + self.separator
         self.url = url
 
     def get_update_date(self):

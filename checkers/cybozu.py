@@ -7,7 +7,7 @@ class CybozuVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Cybozu\t"
+        self.label = "Cybozu" + self.separator
         self.url = url
 
     def get_update_date(self):

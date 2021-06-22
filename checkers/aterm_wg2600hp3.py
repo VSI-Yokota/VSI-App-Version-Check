@@ -8,7 +8,7 @@ class AtermWG2600HP3VersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Aterm WG2600HP3\t"
+        self.label = "Aterm WG2600HP3" + self.separator
         self.url = url
 
     def get_update_date(self):

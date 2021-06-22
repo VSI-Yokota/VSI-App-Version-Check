@@ -24,18 +24,18 @@ class MySQLVersionCheck(AbstractVersionCheck):
 class MySQL56VersionCheck(MySQLVersionCheck):
     def __init__(self, url):
         super().__init__(url)
-        self.label = "MySQL5.6\t"
+        self.label = "MySQL5.6" + self.separator
         self.url = url
 
 
 class MySQL57VersionCheck(MySQLVersionCheck):
     def __init__(self, url):
         super().__init__(url)
-        self.label = "MySQL5.7\t"
+        self.label = "MySQL5.7" + self.separator
         self.url = url
 
 class MySQL80VersionCheck(MySQLVersionCheck):
     def __init__(self, url):
         super().__init__(url)
-        self.label = "MySQL8.0\t"
+        self.label = "MySQL8.0" + self.separator
         self.url = url

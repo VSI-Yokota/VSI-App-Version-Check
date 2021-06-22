@@ -20,12 +20,12 @@ class TeraStationVersionCheck(BuffaloVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "TeraStation\t"
+        self.label = "TeraStation" + self.separator
         self.url = url
 
 class WZR_D1100HVersionCheck(BuffaloVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "WZR D1100H\t"
+        self.label = "WZR D1100H" + self.separator
         self.url = url

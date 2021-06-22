@@ -87,5 +87,7 @@ def get_target_date():
 if __name__ == '__main__':
     target_date = get_target_date()
 
+    # output tsv
+    print("application\t status\t latest date\t url")
     for checker in checkers:
         checker.check(target_date)

@@ -7,7 +7,7 @@ class MODXVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "MODX\t"
+        self.label = "MODX" + self.separator
         self.url = url
 
     def get_update_date(self):

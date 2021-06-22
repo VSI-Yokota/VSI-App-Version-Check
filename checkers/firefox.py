@@ -7,7 +7,7 @@ class FirefoxVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Firefox\t"
+        self.label = "Firefox" + self.separator
         self.url = url
 
     def get_update_date(self):

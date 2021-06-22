@@ -7,7 +7,7 @@ class WordPressSecurityVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "WORDPRESS Security\t"
+        self.label = "WORDPRESS Security" + self.separator
         self.url = url
 
     def get_update_date(self):

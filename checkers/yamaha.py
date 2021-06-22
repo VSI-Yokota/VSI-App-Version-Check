@@ -25,7 +25,7 @@ class RTX1200VersionCheck(YamahaRouterVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "RTX1200\t"
+        self.label = "RTX1200" + self.separator
         self.url = url
         self.date_format = '%Y年%m月%d日'
 
@@ -34,7 +34,7 @@ class RTX1210VersionCheck(YamahaRouterVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "RTX1210\t"
+        self.label = "RTX1210" + self.separator
         self.url = url
         self.date_format = '%Y年%m月%d日'
 
@@ -42,6 +42,6 @@ class WXL202VersionCheck(YamahaRouterVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "WXL202\t"
+        self.label = "WXL202" + self.separator
         self.url = url
         self.date_format = '%Y年 %m月%d日'

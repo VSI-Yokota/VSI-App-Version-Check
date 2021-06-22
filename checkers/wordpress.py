@@ -27,7 +27,7 @@ class WordPressVersionCheck(WordPressVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "WORDPRESS\t"
+        self.label = "WORDPRESS" + self.separator
         self.date_format = "%B %d, %Y"
         self.url = url
 
@@ -36,6 +36,6 @@ class WordPressJPVersionCheck(WordPressVersionCheckBase):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "WORDPRESS JP\t"
+        self.label = "WORDPRESS JP" + self.separator
         self.date_format = u"%Y年%m月%d日"
         self.url = url

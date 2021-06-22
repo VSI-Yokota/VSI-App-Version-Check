@@ -11,7 +11,7 @@ class WindowsVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "Windows\t"
+        self.label = "Windows" + self.separator
         self.url = url
 
     def get_update_date(self):

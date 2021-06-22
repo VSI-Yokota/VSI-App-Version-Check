@@ -8,7 +8,7 @@ class PHP4WindowsVersionCheck(AbstractVersionCheck):
 
     def __init__(self, url):
         super().__init__(url)
-        self.label = "PHP FOR WINDOWS\t"
+        self.label = "PHP FOR WINDOWS" + self.separator
         self.url = url
 
     def get_update_date(self):
