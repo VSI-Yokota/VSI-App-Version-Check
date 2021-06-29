@@ -15,7 +15,7 @@ class AdobeSecurityVersionCheck(AbstractVersionCheck):
     def get_update_date(self):
 
         try:
-            driver = webdriver.Chrome(executable_path="/Applications/chromedriver")
+            driver = webdriver.Chrome(executable_path=self.chrome_driver)
             driver.implicitly_wait(3)
             driver.get(self.url)
 

@@ -14,6 +14,7 @@ class AbstractVersionCheck(ABC):
         self.label = ''
         self.url = ''
         self.separator = ','
+        self.chrome_driver = '/Applications/chromedriver'
         try:
             res = requests.get(url)
             res.encoding = res.apparent_encoding
