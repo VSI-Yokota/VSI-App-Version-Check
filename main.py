@@ -34,8 +34,8 @@ from datetime import datetime, timedelta
 
 checkers = (
     FirefoxVersionCheck("https://www.mozilla.org/en-US/firefox/releases/"),
-    IOSVersionCheck("https://support.apple.com/en-us/HT201222"),
     ChromeVersionCheck("https://chromereleases.googleblog.com/"),
+    IOSVersionCheck("https://support.apple.com/en-us/HT201222"),
     AcrobatVersionCheck("https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html"),
     CreativeCloudVersionCheck("https://helpx.adobe.com/creative-cloud/release-note/cc-release-notes.html"),
     AdobeSecurityVersionCheck("https://helpx.adobe.com/security.html"),
