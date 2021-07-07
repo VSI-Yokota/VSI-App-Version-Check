@@ -88,6 +88,6 @@ if __name__ == '__main__':
     target_date = get_target_date()
 
     # output tsv
-    print(",".join(("application","status","latest","date","url")))
+    print(",".join(("application","status","latestdate","url")))
     for checker in checkers:
         checker.check(target_date)
