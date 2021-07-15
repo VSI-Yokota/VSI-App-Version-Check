@@ -31,6 +31,7 @@ from checkers.yamaha import WXL202VersionCheck
 from checkers.aterm_wg2600hp3 import AtermWG2600HP3VersionCheck
 from checkers.cybozu import CybozuVersionCheck
 from datetime import datetime, timedelta
+from send_mail import send_mail
 
 checkers = (
     FirefoxVersionCheck("https://www.mozilla.org/en-US/firefox/releases/"),
@@ -85,8 +86,15 @@ def get_target_date():
 
 if __name__ == '__main__':
     target_date = get_target_date()
+    out_file = './check.csv'
+    with open(out_file, mode='w') as f:
+        f.write(",".join(("application","status","latestdate","url\n")))
+        # 標準出力(csv出力用) メールの運用が安定したら不要
+        print(",".join(("application","status","latestdate","url\n")))
 
-    # output tsv
-    print(",".join(("application","status","latestdate","url")))
-    for checker in checkers:
-        checker.check(target_date)
+        for checker in checkers:
+            f.write(checker.check(target_date))
+            # 標準出力(csv出力用) メールの運用が安定したら不要
+            print(checker.check(target_date))
+
+    send_mail(target_date, out_file)

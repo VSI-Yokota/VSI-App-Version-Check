@@ -30,15 +30,15 @@ class AbstractVersionCheck(ABC):
    
     def check(self, target_date):
 
+        ret = ''
         if not hasattr(self, 'soup'):
-            print(self.label + "soup was not found")
-            return
+            return (self.label + "soup was not found\n")
 
         last_update = self.get_update_date() 
 
         if last_update is None or target_date is None:
-            print(self.label , " last update couldn't retrieve from this site. please check on yourself." , self.separator , self.url)
+            return self.label + " last update couldn't retrieve from this site. please check on yourself." + self.separator + self.separator + self.url + "\n"
         elif target_date <= last_update:
-            print(self.label , " may have been changed version. latest article date was", self.separator , last_update.strftime('%Y/%m/%d') , self.separator , self.url)
+            return self.label + " may have been changed version. latest article date was" +  self.separator + last_update.strftime('%Y/%m/%d') + self.separator + self.url + "\n"
         else :
-            print(self.label , "none. latest article date was", self.separator , last_update.strftime('%Y/%m/%d'))
+            return self.label + "none. latest article date was" + self.separator + last_update.strftime('%Y/%m/%d') + "\n"
