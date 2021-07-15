@@ -75,8 +75,7 @@ def get_target_date():
         str_date = str_date.replace("\n", "")
 
         with open(file, mode='w') as f:
-            yesterday = datetime.today() - timedelta(days=1)
-            f.write(yesterday.strftime('%Y-%m-%d'))
+            f.write(datetime.today().strftime('%Y-%m-%d'))
 
         return datetime.strptime(str_date, '%Y-%m-%d')
 
