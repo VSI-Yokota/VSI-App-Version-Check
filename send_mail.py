@@ -18,7 +18,7 @@ def send_mail(target_date, check_file):
         smtp_password = f.read()
     smtp_password = smtp_password.replace("\n", "")
 
-    to_address = "staff@vital-service.com, y.yokota@vital-service.com"
+    to_address = "all_staff@vital-service.com,y.yokota@vital-service.com"
     from_address = smtp_user
 
     subject = "version check(対象日：{})".format(target_date.strftime('%Y-%m-%d'))
