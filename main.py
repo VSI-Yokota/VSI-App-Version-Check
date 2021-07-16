@@ -95,6 +95,6 @@ if __name__ == '__main__':
         for checker in checkers:
             f.write(checker.check(target_date))
             # 標準出力(csv出力用) メールの運用が安定したら不要
-            print(checker.check(target_date))
+            print(checker.check(target_date), end='')
 
     send_mail(target_date, out_file)
