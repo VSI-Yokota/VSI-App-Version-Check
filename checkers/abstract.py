@@ -14,7 +14,6 @@ class AbstractVersionCheck(ABC):
         self.label = ''
         self.url = ''
         self.separator = ','
-        self.chrome_driver = '/Applications/chromedriver'
         try:
             res = requests.get(url)
             res.encoding = res.apparent_encoding
@@ -22,19 +21,19 @@ class AbstractVersionCheck(ABC):
         except :
             print(self.__class__.__name__ + " html parse error")
 
-        
+
     @abstractmethod
     def get_update_date(self):
         pass
 
-   
+
     def check(self, target_date):
 
         ret = ''
         if not hasattr(self, 'soup'):
             return (self.label + "soup was not found\n")
 
-        last_update = self.get_update_date() 
+        last_update = self.get_update_date()
 
         if last_update is None or target_date is None:
             return self.label + " last update couldn't retrieve from this site. please check on yourself." + self.separator + self.separator + self.url + "\n"

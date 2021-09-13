@@ -5,6 +5,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class WindowsVersionCheck(AbstractVersionCheck):
@@ -17,7 +18,7 @@ class WindowsVersionCheck(AbstractVersionCheck):
     def get_update_date(self):
 
         try:
-            driver = webdriver.Chrome(executable_path=self.chrome_driver)
+            driver = webdriver.Chrome(ChromeDriverManager().install())
             driver.implicitly_wait(10)
             driver.get(self.url)
             data = driver.find_element_by_class_name('ms-GroupedList-group')
