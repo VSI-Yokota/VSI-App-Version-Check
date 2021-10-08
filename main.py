@@ -32,6 +32,20 @@ from checkers.aterm_wg2600hp3 import AtermWG2600HP3VersionCheck
 from checkers.cybozu import CybozuVersionCheck
 from datetime import datetime, timedelta
 from send_mail import send_mail
+from logging import basicConfig, getLogger, handlers, INFO
+basicConfig(
+    level=INFO,
+    format='%(asctime)s [%(levelname)s]: %(name)s#%(funcName)s - %(message)s (%(filename)s:%(lineno)s)',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=[handlers.TimedRotatingFileHandler(
+        filename='./logs/version-check-{:%Y-%m-%d}.log'.format(datetime.now()),
+        encoding='utf-8',
+        backupCount=7
+    )],
+)
+
+logger = getLogger(__name__)
+
 
 checkers = (
     FirefoxVersionCheck("https://www.mozilla.org/en-US/firefox/releases/"),
@@ -68,11 +82,13 @@ checkers = (
 
 def get_target_date():
 
-    file = 'target_date'
     try:
+        logger.info('[CALL] get_target_date')
+
+        file = 'target_date'
         with open(file, mode='r') as f:
             str_date = f.read()
-        
+
         str_date = str_date.replace("\n", "")
 
         with open(file, mode='w') as f:
@@ -81,20 +97,24 @@ def get_target_date():
         return datetime.strptime(str_date, '%Y-%m-%d')
 
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 
 if __name__ == '__main__':
-    target_date = get_target_date()
-    out_file = './check.csv'
-    with open(out_file, mode='w') as f:
-        f.write(",".join(("application","status","latestdate","url\n")))
-        # 標準出力(csv出力用) メールの運用が安定したら不要
-        print(",".join(("application","status","latestdate","url\n")))
+    try:
+        logger.info('[CALL] __main__')
 
-        for checker in checkers:
-            f.write(checker.check(target_date))
+        target_date = get_target_date()
+        out_file = './check.csv'
+        with open(out_file, mode='w') as f:
+            f.write(",".join(("application","status","latestdate","url\n")))
             # 標準出力(csv出力用) メールの運用が安定したら不要
-            print(checker.check(target_date), end='')
+            print(",".join(("application","status","latestdate","url\n")))
 
-    send_mail(target_date, out_file)
+            for checker in checkers:
+                f.write(checker.check(target_date))
+                # 標準出力(csv出力用) メールの運用が安定したら不要
+                print(checker.check(target_date), end='')
+        send_mail(target_date, out_file)
+    except Exception as e:
+        logger.error(e)

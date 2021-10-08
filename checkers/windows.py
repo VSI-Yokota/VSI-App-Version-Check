@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 
 class WindowsVersionCheck(AbstractVersionCheck):
@@ -21,6 +22,8 @@ class WindowsVersionCheck(AbstractVersionCheck):
             driver = webdriver.Chrome(ChromeDriverManager().install())
             driver.implicitly_wait(10)
             driver.get(self.url)
+            time.sleep(10)
+
             data = driver.find_element_by_class_name('ms-GroupedList-group')
             rec = data.find_element_by_class_name('ms-List-cell')
             date_tag = rec.find_element_by_class_name('ms-DetailsRow-cell')

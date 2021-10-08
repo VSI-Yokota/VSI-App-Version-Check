@@ -1,4 +1,5 @@
-smtp_pass = 'sp+*uwre5iSWu$L$rIsw'
-
-#mail_to_address = 'all_staff@vital-service.com,y.yokota@vital-service.com'
-mail_to_address = 'y.yokota@vital-service.com'
+smtp_server = 'smtp.office365.com'
+smtp_port = 587
+smtp_user = ''
+smtp_pass = ''
+mail_to_address = ''

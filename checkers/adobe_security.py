@@ -4,6 +4,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 
 class AdobeSecurityVersionCheck(AbstractVersionCheck):
@@ -17,8 +18,9 @@ class AdobeSecurityVersionCheck(AbstractVersionCheck):
 
         try:
             driver = webdriver.Chrome(ChromeDriverManager().install())
-            driver.implicitly_wait(3)
+            driver.implicitly_wait(10)
             driver.get(self.url)
+            time.sleep(5)
 
             # iframeへ制御を移動
             iframe = driver.find_element_by_tag_name('iframe')
