@@ -1,13 +1,13 @@
 # coding: utf-8
 
+import re
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class CreativeCloudVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Adobe Creative Cloud" + self.separator
         self.url = url
 
@@ -21,5 +21,5 @@ class CreativeCloudVersionCheck(AbstractVersionCheck):
                 if len(date) > 0:
                     last_update = datetime.strptime(date[0], '%m/%d/%Y')
                     return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

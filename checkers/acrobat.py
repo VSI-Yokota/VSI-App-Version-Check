@@ -5,8 +5,8 @@ from datetime import datetime
 
 class AcrobatVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Acrobat" + self.separator
         self.url = url
 
@@ -17,5 +17,5 @@ class AcrobatVersionCheck(AbstractVersionCheck):
             chomp_date = dt_tag[0].text.replace( '\n' , '' )
             last_update = datetime.strptime(chomp_date, '%b %d, %Y')
             return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

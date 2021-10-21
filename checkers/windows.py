@@ -1,18 +1,18 @@
 # coding: utf-8
 
+import time
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from webdriver_manager.chrome import ChromeDriverManager
-import time
 
 
 class WindowsVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Windows" + self.separator
         self.url = url
 
@@ -32,5 +32,5 @@ class WindowsVersionCheck(AbstractVersionCheck):
             last_update = datetime.strptime(date, '%Y年%m月%d日')
             return last_update
         except Exception as e:
-            print(e)
-            print(self.label + "error occured")
+            self.logger.error(e)
+            self.logger.error(self.label + "error occured")

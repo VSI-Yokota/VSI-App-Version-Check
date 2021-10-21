@@ -1,13 +1,13 @@
 # coding: utf-8
 
+import re
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class AtermWG2600HP3VersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Aterm WG2600HP3" + self.separator
         self.url = url
 
@@ -21,5 +21,5 @@ class AtermWG2600HP3VersionCheck(AbstractVersionCheck):
                 if len(date) > 0:
                     last_update = datetime.strptime(date[0], '%Y/%m/%d')
                     return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

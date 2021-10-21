@@ -5,8 +5,8 @@ from datetime import datetime
 
 class ApacheVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Apache" + self.separator
         self.url = url
 
@@ -20,8 +20,8 @@ class ApacheVersionCheck(AbstractVersionCheck):
                 if date is not None:
                     last_update = datetime.strptime(date.text, '%Y-%m-%d')
                     return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
 
-        
+
 

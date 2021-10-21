@@ -3,20 +3,18 @@
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
 
-class AndroidVersionCheck(AbstractVersionCheck):
+class TeraTermVersionCheck(AbstractVersionCheck):
 
     def __init__(self, target_date, url):
         super().__init__(target_date, url)
-        self.label = "Android" + self.separator
+        self.label = "TeraTerm" + self.separator
         self.url = url
 
     def get_update_date(self):
 
         try:
-            td_tags = self.soup.find('table').find_all('td')
-            date = td_tags[2].text
-            if len(date) > 0:
-                last_update = datetime.strptime(date, '%Y 年 %m 月 %d 日')
-                return last_update
+            date = self.soup.find(class_='headline-delimiter').text
+            last_update = datetime.strptime(date, '%Y-%m-%d')
+            return last_update
         except Exception as e:
             self.logger.error(self.label + "error occured")

@@ -5,8 +5,8 @@ from datetime import datetime
 
 class WordPressSecurityVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "WORDPRESS Security" + self.separator
         self.url = url
 
@@ -16,5 +16,5 @@ class WordPressSecurityVersionCheck(AbstractVersionCheck):
             date = self.soup.find(class_='widefat').find('tr').find('th')
             last_update = datetime.strptime(date.text, '%B %d, %Y')
             return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

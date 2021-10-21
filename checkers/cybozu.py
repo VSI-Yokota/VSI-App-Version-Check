@@ -5,8 +5,8 @@ from datetime import datetime
 
 class CybozuVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Cybozu" + self.separator
         self.url = url
 
@@ -16,5 +16,5 @@ class CybozuVersionCheck(AbstractVersionCheck):
             date_tag = self.soup.find(class_='list-item').find(class_='list-item-date')
             last_update = datetime.strptime(date_tag.text, '%Y.%m.%d')
             return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

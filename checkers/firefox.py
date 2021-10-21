@@ -5,8 +5,8 @@ from datetime import datetime
 
 class FirefoxVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Firefox" + self.separator
         self.url = url
 
@@ -16,7 +16,7 @@ class FirefoxVersionCheck(AbstractVersionCheck):
             # transfar to detail page
             latest_release_list = self.soup.find(class_='c-release-list').find('li')
             miner_versions = latest_release_list.find('ol')
-            
+
             if (miner_versions is None):
                 latest_version_link = latest_release_list.find('a')
             else:
@@ -25,13 +25,13 @@ class FirefoxVersionCheck(AbstractVersionCheck):
 
             detail = FirefoxVersionDetailCheck( self.url + latest_version_link['href'])
             return detail.get_update_date()
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
 
 class FirefoxVersionDetailCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "Firefox detail\t"
 
     def get_update_date(self):
@@ -39,5 +39,5 @@ class FirefoxVersionDetailCheck(AbstractVersionCheck):
             date = self.soup.find(class_='c-release-date')
             last_update = datetime.strptime(date.text, '%B %d, %Y')
             return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

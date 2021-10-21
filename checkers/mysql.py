@@ -1,8 +1,8 @@
 # coding: utf-8
 
+import re
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class MySQLVersionCheck(AbstractVersionCheck):
 
@@ -17,25 +17,25 @@ class MySQLVersionCheck(AbstractVersionCheck):
                 if len(date) > 0:
                     last_update = datetime.strptime(date[0], '%Y-%m-%d')
                     return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
 
-        
+
 class MySQL56VersionCheck(MySQLVersionCheck):
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "MySQL5.6" + self.separator
         self.url = url
 
 
 class MySQL57VersionCheck(MySQLVersionCheck):
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "MySQL5.7" + self.separator
         self.url = url
 
 class MySQL80VersionCheck(MySQLVersionCheck):
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "MySQL8.0" + self.separator
         self.url = url

@@ -17,14 +17,14 @@ class YamahaRouterVersionCheckBase(AbstractVersionCheck):
                 if len(date) > 0:
                     last_update = datetime.strptime(date[0], self.date_format)
                     return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
 
-        
+
 class RTX1200VersionCheck(YamahaRouterVersionCheckBase):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "RTX1200" + self.separator
         self.url = url
         self.date_format = '%Y年%m月%d日'
@@ -32,16 +32,16 @@ class RTX1200VersionCheck(YamahaRouterVersionCheckBase):
 
 class RTX1210VersionCheck(YamahaRouterVersionCheckBase):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "RTX1210" + self.separator
         self.url = url
         self.date_format = '%Y年%m月%d日'
 
 class WXL202VersionCheck(YamahaRouterVersionCheckBase):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "WXL202" + self.separator
         self.url = url
         self.date_format = '%Y年 %m月%d日'

@@ -5,8 +5,8 @@ from datetime import datetime
 
 class JPCertWeeklyCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "JPCert Weekly" + self.separator
         self.url = url
 
@@ -17,5 +17,5 @@ class JPCertWeeklyCheck(AbstractVersionCheck):
             last_update = datetime.strptime(dt_tag.text, '%Y-%m-%d')
             return last_update
         except Exception as e:
-            print(e)
-            print(self.label + "error occured")
+            self.logger.error(e)
+            self.logger.error(self.label + "error occured")

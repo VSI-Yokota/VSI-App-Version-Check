@@ -2,7 +2,6 @@
 
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class BuffaloVersionCheckBase(AbstractVersionCheck):
 
@@ -13,19 +12,19 @@ class BuffaloVersionCheckBase(AbstractVersionCheck):
             last_update = datetime.strptime(time_tag.text, '%Y/%m/%d')
             return last_update
 
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
 
 class TeraStationVersionCheck(BuffaloVersionCheckBase):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "TeraStation" + self.separator
         self.url = url
 
 class WZR_D1100HVersionCheck(BuffaloVersionCheckBase):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "WZR D1100H" + self.separator
         self.url = url

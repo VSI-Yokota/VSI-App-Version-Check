@@ -1,13 +1,13 @@
 # coding: utf-8
 
+import re
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class AquosVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "AQUOS SH-M08" + self.separator
         self.url = url
 
@@ -22,5 +22,5 @@ class AquosVersionCheck(AbstractVersionCheck):
                     last_update = datetime.strptime(date[0], '%Y年%m月%d日')
                     return last_update
 
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

@@ -11,7 +11,7 @@ logger = getLogger(__name__)
 
 def send_mail(target_date, check_file):
     try:
-        logger.info('[CALL] send_mail')
+        logger.info('[send_mail')
 
         subject = "version check(対象日：{})".format(target_date.strftime('%Y-%m-%d'))
         body = """

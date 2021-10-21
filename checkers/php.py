@@ -5,8 +5,8 @@ from datetime import datetime
 
 class PHPVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "PHP" + self.separator
         self.url = url
 
@@ -17,8 +17,8 @@ class PHPVersionCheck(AbstractVersionCheck):
             time = news.find('time')
             last_update = datetime.strptime(time.text, '%d %b %Y')
             return last_update
-        except:
-            print("PHP\terror occured")
+        except Exception as e:
+            self.logger.error("PHP\terror occured")
 
-        
+
 

@@ -1,13 +1,13 @@
 # coding: utf-8
 
+import re
 from checkers.abstract import AbstractVersionCheck
 from datetime import datetime
-import re
 
 class PHP4WindowsVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "PHP FOR WINDOWS" + self.separator
         self.url = url
 
@@ -28,5 +28,5 @@ class PHP4WindowsVersionCheck(AbstractVersionCheck):
             if len(date) > 0:
                 last_update = datetime.strptime(date[0], '%Y-%b-%d %H:%M:%S')
                 return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")

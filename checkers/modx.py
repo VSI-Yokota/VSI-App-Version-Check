@@ -5,8 +5,8 @@ from datetime import datetime
 
 class MODXVersionCheck(AbstractVersionCheck):
 
-    def __init__(self, url):
-        super().__init__(url)
+    def __init__(self, target_date, url):
+        super().__init__(target_date, url)
         self.label = "MODX" + self.separator
         self.url = url
 
@@ -16,5 +16,5 @@ class MODXVersionCheck(AbstractVersionCheck):
             row = self.soup.find(class_='newsList').find('dt')
             last_update = datetime.strptime(row.text, '%Y年%m月%d日')
             return last_update
-        except:
-            print(self.label + "error occured")
+        except Exception as e:
+            self.logger.error(self.label + "error occured")
