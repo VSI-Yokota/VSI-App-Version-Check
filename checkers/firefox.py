@@ -23,7 +23,7 @@ class FirefoxVersionCheck(AbstractVersionCheck):
                 miner_tags = miner_versions.find_all('a')
                 latest_version_link = miner_tags[-1]
 
-            detail = FirefoxVersionDetailCheck( self.url + latest_version_link['href'])
+            detail = FirefoxVersionDetailCheck(self.target_date, self.url + latest_version_link['href'])
             return detail.get_update_date()
         except Exception as e:
             self.logger.error(self.label + "error occured")
